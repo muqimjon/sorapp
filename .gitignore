@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/src/SorApp.WebApi/appsettings.Development.json
+/src/SorApp.Infrastructure/Data/Migrations
