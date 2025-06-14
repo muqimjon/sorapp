@@ -27,7 +27,7 @@ public class TemplateConfiguration : IEntityTypeConfiguration<Template>
                     v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
                 )
                 .Metadata.SetValueComparer(new ValueComparer<List<string>>(
-                    (c1, c2) => c1.SequenceEqual(c2),
+                    (c1, c2) => c1!.SequenceEqual(c2!),
                     c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
                     c => c.ToList()
                 ));

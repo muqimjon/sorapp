@@ -5,11 +5,11 @@ using SorApp.Domain.Enums;
 
 public class Template(Guid authorId, string title, string description, TemplateStatus status) : BaseEntity
 {
-    public Guid AuthorId { get; private set; } = authorId;
+    public Guid AuthorId { get; set; } = authorId;
     public string Title { get; private set; } = title;
     public string Description { get; private set; } = description;
     public TemplateStatus Status { get; private set; } = status;
-    public List<string> Tags { get; private set; } = [];
+    public List<string> Tags { get; set; } = [];
     public List<Question> Questions { get; private set; } = [];
 
     public void Update(string title, string description, TemplateStatus status)
