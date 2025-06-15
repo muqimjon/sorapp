@@ -1,8 +1,8 @@
-﻿namespace SorApp.Application.Extensions;
+﻿namespace SorApp.Application;
 
 using Microsoft.Extensions.DependencyInjection;
-using SorApp.Application.Interfaces;
-using SorApp.Application.Mappings;
+using SorApp.Application.Common.Interfaces;
+using SorApp.Application.Common.Mappings;
 using SorApp.Application.Services;
 
 public static class DependencyInjection

@@ -1,11 +1,11 @@
-﻿namespace SorApp.Infrastructure.Extensions;
+﻿namespace SorApp.Infrastructure;
 
 using Amazon.S3;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SorApp.Infrastructure.Data;
+using SorApp.Application.Common.Interfaces;
+using SorApp.Infrastructure.Persistence;
 using SorApp.Infrastructure.Services;
 
 public static class DependencyInjection
@@ -15,10 +15,7 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(opt =>
             opt.UseNpgsql(config.GetConnectionString("DefaultConnection")));
 
-        services.AddAuthentication(options =>
-        {
-            options.DefaultScheme = IdentityConstants.ApplicationScheme;
-        }).AddCookie(IdentityConstants.ApplicationScheme);
+        services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
 
         services.AddDefaultAWSOptions(config.GetAWSOptions());
         services.AddAWSService<IAmazonS3>();

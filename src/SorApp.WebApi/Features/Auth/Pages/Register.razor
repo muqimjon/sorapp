@@ -1,0 +1,45 @@
+﻿@page "/register"
+@using SorApp.Application.DTOs
+@using SorApp.WebApi.Services
+@inject IAuthService authService
+@inject NavigationManager Nav
+
+<PageTitle>SorApp - Register</PageTitle>
+
+<h3>Register</h3>
+
+<EditForm Model="@registerDto" OnValidSubmit="@HandleRegister">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label>First name</label>
+        <InputText class="form-control" @bind-Value="registerDto.FirstName" />
+    </div>
+    <div class="mb-3">
+        <label>Last name</label>
+        <InputText class="form-control" @bind-Value="registerDto.LastName" />
+    </div>
+    <div class="mb-3">
+        <label>Email</label>
+        <InputText class="form-control" @bind-Value="registerDto.Email" />
+    </div>
+    <div class="mb-3">
+        <label>Password</label>
+        <InputText type="password" class="form-control" @bind-Value="registerDto.Password" />
+    </div>
+
+    <button class="btn btn-primary">Register</button>
+</EditForm>
+
+@code {
+    private RegisterDto registerDto = new();
+
+    private async Task HandleRegister()
+    {
+        var result = await authService.RegisterAsync(registerDto);
+        if (result.IsSuccess)
+            Nav.NavigateTo("/", forceLoad: true);
+
+    }
+}

@@ -1,11 +1,12 @@
 ﻿namespace SorApp.Domain.Entities;
 
-using Microsoft.AspNetCore.Identity;
+using SorApp.Domain.Common;
 
-public class User : IdentityUser<Guid>
+public class User : BaseEntity
 {
-    public string FirstName { get; set; } = "";
-    public string LastName { get; set; } = "";
+    public Guid AppUserId { get; set; }
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
 
     public List<Template> Templates { get; set; } = [];
     public List<Form> Forms { get; set; } = [];

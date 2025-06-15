@@ -1,0 +1,41 @@
+﻿@page "/login"  
+@using SorApp.Application.DTOs  
+@using SorApp.WebApi.Services  
+@inject HttpClient http  
+@inject IAuthService AuthService  
+@inject NavigationManager Nav  
+
+<PageTitle>SorApp - Login</PageTitle>  
+
+<h3>Login</h3>  
+
+<EditForm Model="@dto" OnValidSubmit="@HandleLogin">  
+    <DataAnnotationsValidator />  
+    <ValidationSummary />  
+
+    <div class="mb-3">  
+        <label>Email</label>  
+        <InputText class="form-control" @bind-Value="dto.Email" />  
+    </div>  
+    <div class="mb-3">  
+        <label>Password</label>  
+        <InputText type="password" class="form-control" @bind-Value="dto.Password" />  
+    </div>  
+    <div>
+        <label>Remember me </label>
+        <InputCheckbox class="form-check-input" @bind-Value="dto.IsPersistent" />
+    </div>
+
+    <button class="btn btn-success">Login</button>
+</EditForm> 
+
+@code {
+    private LoginDto dto = new();  
+
+    private async Task HandleLogin()  
+    {  
+        var response = await http.PostAsJsonAsync("/login", dto);
+        if (response.IsSuccessStatusCode) 
+            Nav.NavigateTo("/", forceLoad: true);  
+    }  
+}

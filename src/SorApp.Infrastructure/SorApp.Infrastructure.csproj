@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SorApp.Application\SorApp.Application\SorApp.Application.csproj" />
     <ProjectReference Include="..\SorApp.Domain\SorApp.Domain.csproj" />
   </ItemGroup>
 

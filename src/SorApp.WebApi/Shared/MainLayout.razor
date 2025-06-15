@@ -1,19 +1,43 @@
-﻿@inherits LayoutComponentBase
+﻿@using SorApp.Domain.Entities
+@using SorApp.WebApi.Services
+@inherits LayoutComponentBase
+@inject NavigationManager Nav
+@inject IAuthService authService
+@inject AuthenticationStateProvider AuthStateProvider
 
-<PageTitle>SorApp.WebApi</PageTitle>
+<PageTitle>SorApp</PageTitle>
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+        <h3 class="m-0">
+            <a href="/" class="text-decoration-none text-dark">SorApp</a>
+        </h3>
+
+        <AuthorizeView>
+            <Authorized>
+                <div>
+                    <span class="me-3">Welcome, @context.User.Identity?.Name</span>
+                    <button class="btn btn-sm btn-outline-secondary" @onclick="Logout">Logout</button>
+                </div>
+            </Authorized>
+            <NotAuthorized>
+                <div>
+                    <a href="/login" class="btn btn-sm btn-outline-primary me-2">Login</a>
+                    <a href="/register" class="btn btn-sm btn-primary">Register</a>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
     </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    <div class="container py-4">
+        @Body
+    </div>
 </div>
+
+@code {
+    private async Task Logout()
+    {
+        await authService.LogoutAsync();
+        Nav.NavigateTo("/", true);
+    }
+}

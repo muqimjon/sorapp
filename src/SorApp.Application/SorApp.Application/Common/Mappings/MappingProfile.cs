@@ -1,4 +1,4 @@
-﻿namespace SorApp.Application.Mappings;
+﻿namespace SorApp.Application.Common.Mappings;
 
 using AutoMapper;
 using SorApp.Application.DTOs;

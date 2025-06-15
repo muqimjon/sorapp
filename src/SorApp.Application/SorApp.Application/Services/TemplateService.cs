@@ -2,13 +2,12 @@
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using SorApp.Application.DTOs;
-using SorApp.Application.Interfaces;
+using SorApp.Application.Common.Interfaces;
 using SorApp.Domain.Entities;
 using SorApp.Domain.Enums;
-using SorApp.Infrastructure.Data;
+using SorApp.Application.DTOs;
 
-public class TemplateService(AppDbContext ctx, IMapper mapper) : ITemplateService
+public class TemplateService(IAppDbContext ctx, IMapper mapper) : ITemplateService
 {
     public async Task<List<TemplateDto>> GetAllPublicTemplatesAsync()
     {

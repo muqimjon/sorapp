@@ -1,4 +1,4 @@
-﻿namespace SorApp.Infrastructure.Services;
+﻿namespace SorApp.Application.Common.Interfaces;
 
 public interface IStorageService
 {

@@ -1,11 +1,13 @@
-﻿namespace SorApp.Infrastructure.Data;
+﻿namespace SorApp.Infrastructure.Persistence;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SorApp.Application.Common.Interfaces;
 using SorApp.Domain.Entities;
+using SorApp.Infrastructure.Identity;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<User, IdentityRole<Guid>, Guid>(options)
+public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>(options), IAppDbContext
 {
     public DbSet<Template> Templates => Set<Template>();
     public DbSet<Question> Questions => Set<Question>();

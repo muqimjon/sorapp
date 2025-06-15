@@ -2,13 +2,12 @@
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using SorApp.Application.DTOs;
-using SorApp.Application.Interfaces;
+using SorApp.Application.Common.Interfaces;
 using SorApp.Domain.Entities;
 using SorApp.Domain.Enums;
-using SorApp.Infrastructure.Data;
+using SorApp.Application.DTOs;
 
-public class QuestionService(AppDbContext ctx, IMapper mapper) : IQuestionService
+public class QuestionService(IAppDbContext ctx, IMapper mapper) : IQuestionService
 {
     public async Task<List<QuestionDto>> GetByTemplateAsync(Guid templateId)
     {

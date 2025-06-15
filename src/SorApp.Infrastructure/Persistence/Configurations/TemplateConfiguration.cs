@@ -1,4 +1,4 @@
-﻿namespace SorApp.Infrastructure.Data.Configurations;
+﻿namespace SorApp.Infrastructure.Persistence.Configurations;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;

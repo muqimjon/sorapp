@@ -1,6 +1,6 @@
-﻿namespace SorApp.Application.Interfaces;
+﻿namespace SorApp.Application.Common.Interfaces;
 
-using global::SorApp.Application.DTOs;
+using SorApp.Application.DTOs;
 
 public interface IUserService
 {

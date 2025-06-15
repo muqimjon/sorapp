@@ -1,0 +1,39 @@
+﻿@page "/templates"  
+@inject TemplateService TemplateSvc  
+@using SorApp.Application.DTOs
+@using SorApp.Application.Services
+
+<h3>Templates</h3>  
+
+@if (templates is null)  
+{  
+    <p>Loading...</p>  
+}  
+else  
+{  
+    <ul class="list-group">  
+        @foreach (var t in templates)  
+        {  
+            <li class="list-group-item d-flex justify-content-between align-items-center">  
+                <div>  
+                    <strong>@t.Title</strong> — @t.Description  
+                </div>  
+                <button class="btn btn-sm btn-primary" @onclick="() => EditTemplate(t.Id)">Edit</button>  
+            </li>  
+        }
+    </ul>
+}
+
+@code {  
+    private List<TemplateDto>? templates;  
+
+    protected override async Task OnInitializedAsync()  
+    {  
+        templates = await TemplateSvc.GetAllPublicTemplatesAsync();  
+    }  
+
+    void EditTemplate(Guid id)  
+    {  
+        // NavigationManager.NavigateTo($"/templates/edit/{id}");  
+    }  
+}

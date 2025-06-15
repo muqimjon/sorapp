@@ -1,4 +1,4 @@
-﻿namespace SorApp.Application.Interfaces;
+﻿namespace SorApp.Application.Common.Interfaces;
 
 using SorApp.Application.DTOs;
 

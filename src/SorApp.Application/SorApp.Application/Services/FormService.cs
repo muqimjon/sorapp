@@ -2,12 +2,11 @@
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using SorApp.Application.Common.Interfaces;
 using SorApp.Application.DTOs;
-using SorApp.Application.Interfaces;
 using SorApp.Domain.Entities;
-using SorApp.Infrastructure.Data;
 
-public class FormService(AppDbContext ctx, IMapper mapper) : IFormService
+public class FormService(IAppDbContext ctx, IMapper mapper) : IFormService
 {
     public async Task<List<FormDto>> GetByTemplateAsync(Guid templateId)
     {
@@ -27,10 +26,30 @@ public class FormService(AppDbContext ctx, IMapper mapper) : IFormService
         return form.Id;
     }
 
-    public async Task AddAnswerAsync(Guid formId, AnswerDto dto)
+    public async Task AddAnswerAsync(AnswerDto dto)
     {
         var ans = mapper.Map<Answer>(dto);
         ctx.Answers.Add(ans);
         await ctx.SaveChangesAsync();
+    }
+
+    public Task<List<FormDto>> GetFormsByTemplateIdAsync(Guid templateId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<FormDto?> GetFormByIdAsync(Guid formId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<Guid> SubmitFormAsync(FormDto dto, Guid userId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task DeleteFormAsync(Guid formId, Guid userId)
+    {
+        throw new NotImplementedException();
     }
 }

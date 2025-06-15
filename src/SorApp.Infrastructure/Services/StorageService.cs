@@ -3,6 +3,7 @@
 using Amazon.S3;
 using Amazon.S3.Transfer;
 using Microsoft.Extensions.Configuration;
+using SorApp.Application.Common.Interfaces;
 
 public class StorageService(IAmazonS3 s3, IConfiguration config) : IStorageService
 {
